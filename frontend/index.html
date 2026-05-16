@@ -3,21 +3,303 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Sapiens</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sapiens - Sistema Académico</title>
+    <meta name="description" content="Accede a Sapiens, tu aula virtual universitaria.">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body class="bg-gray-100 h-screen flex flex-col items-center justify-center">
+<body>
+    <!-- BOTÓN CAMBIO DE TEMA -->
+    <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-moon"></i> Modo Oscuro</button>
 
-    <h1 class="text-4xl font-bold text-gray-800 mb-4">Bienvenido a Sapiens</h1>
+    <!-- VISTA DE LOGIN -->
+    <div id="login-view" class="view-container">
+        <main class="login-container">
+            <div class="logo-wrapper">
+                <img src="assets/logo.png" alt="Sapiens Logo">
+                <h1>Sapiens</h1>
+                <p>Sistema Académico Estructurado</p>
+            </div>
 
-    <button id="btn-prueba" class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition">
-        Probar conexión Python ↔ JS
-    </button>
-    <button id="btn-prueba" class="bg-green-600 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition">
-        INICIAR APICACIÓN
-    </button>
-    <p>este boton te llevará directo a la app, pero no te pedira iniciar sesion</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Correo Institucional</label>
+                    <input type="email" id="email" name="email" placeholder="usuario@universidad.edu" required autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="current-password">
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember">
+                        <span>Recordarme</span>
+                    </label>
+                    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    Iniciar Sesión
+                </button>
+            </form>
+            
+            <div class="skip-container">
+                <button type="button" id="btn-skip-login" class="skip-btn">
+                    Saltar Login (Modo Dev)
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- VISTA DEL DASHBOARD -->
+    <div id="dashboard-view" class="view-container" style="display: none;">
+        
+        <!-- Barra lateral (Sidebar) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/logo.png" alt="Sapiens Logo" class="sidebar-logo">
+                <h2>Sapiens</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-btn active" data-target="mi-portal"><i class="fas fa-home"></i> <span>Mi Portal</span></button>
+                <button class="nav-btn" data-target="inicio"><i class="fas fa-history"></i> <span>Historial (Pila)</span></button>
+                <button class="nav-btn" data-target="cursos"><i class="fas fa-book"></i> <span>Materias (Árbol BST)</span></button>
+                <button class="nav-btn" data-target="estudiantes"><i class="fas fa-users"></i> <span>Estudiantes (Lista)</span></button>
+                <button class="nav-btn" data-target="tareas"><i class="fas fa-tasks"></i> <span>Solicitudes (Cola)</span></button>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="btn-logout" class="nav-btn logout-btn"><i class="fas fa-sign-out-alt"></i> <span>Cerrar Sesión</span></button>
+            </div>
+        </aside>
+
+        <!-- Área principal de contenido -->
+        <main class="main-content">
+            
+            <!-- HEADER GLOBAL DEL DASHBOARD -->
+            <header class="content-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 id="page-title">Panel de Control</h1>
+                
+                <!-- Botón de Notificaciones (Historial) -->
+                <div class="notifications-wrapper" style="position: relative;">
+                    <button id="btn-notificaciones" class="notif-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notif-badge"></span>
+                    </button>
+                    <!-- Dropdown de notificaciones -->
+                    <div id="notif-dropdown" class="notif-dropdown" style="display: none;">
+                        <div class="notif-header">
+                            <h4>Notificaciones Recientes</h4>
+                            <span style="font-size: 0.8rem; color: var(--text-muted);">(Pila LIFO)</span>
+                        </div>
+                        <ul id="notif-list" class="notif-list">
+                            <!-- Llenado por JS -->
+                        </ul>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- SECCIÓN: MI PORTAL (DASHBOARD DEL ESTUDIANTE) -->
+            <section class="page-content" id="mi-portal">
+                <div class="welcome-card" style="margin-bottom: 2rem;">
+                    <h2>¡Bienvenido a tu Portal Académico!</h2>
+                    <p>Aquí tienes un resumen de tu actividad, calendario y materias asignadas.</p>
+                </div>
+
+                <!-- Calendario Estático Simple -->
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <h3><i class="far fa-calendar-alt"></i> Mayo 2026</h3>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="cal-day-header">Dom</div>
+                        <div class="cal-day-header">Lun</div>
+                        <div class="cal-day-header">Mar</div>
+                        <div class="cal-day-header">Mié</div>
+                        <div class="cal-day-header">Jue</div>
+                        <div class="cal-day-header">Vie</div>
+                        <div class="cal-day-header">Sáb</div>
+                        <!-- Dias -->
+                        <div class="cal-day empty">26</div><div class="cal-day empty">27</div><div class="cal-day empty">28</div><div class="cal-day empty">29</div><div class="cal-day empty">30</div>
+                        <div class="cal-day">1</div><div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day">10</div><div class="cal-day">11</div><div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day active">15</div><div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day">18</div><div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day">21</div><div class="cal-day">22</div><div class="cal-day">23</div><div class="cal-day">24</div><div class="cal-day">25</div><div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day">28</div><div class="cal-day">29</div><div class="cal-day">30</div><div class="cal-day">31</div>
+                    </div>
+                </div>
+
+                <!-- Grid de Materias -->
+                <h3 style="margin-top: 3rem; margin-bottom: 1rem;"><i class="fas fa-layer-group"></i> Mis Materias</h3>
+                <div class="subjects-grid" id="student-subjects-grid">
+                    <!-- Las tarjetas se generan por JS leyendo el Árbol BST -->
+                </div>
+            </section>
+
+            <!-- SECCIÓN: INICIO (PILA HISTORIAL) -->
+            <section class="page-content" id="inicio" style="display: none;">
+                <div class="welcome-card" style="margin-bottom: 2rem;">
+                    <h2>Registro de Acciones (LIFO)</h2>
+                    <p>Esta sección lee la <strong>Pila</strong> del sistema. Muestra las últimas acciones registradas en orden inverso.</p>
+                </div>
+                <button id="btn-refresh-historial" class="action-btn" style="width: auto;"><i class="fas fa-sync-alt"></i> Refrescar Historial</button>
+                <div class="table-container">
+                    <table class="data-table" id="tabla-historial">
+                        <thead>
+                            <tr>
+                                <th>Hora</th>
+                                <th>Acción Registrada</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Llenado por JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: CURSOS/MATERIAS (ÁRBOL BST) -->
+            <section class="page-content" id="cursos" style="display: none;">
+                <h2>Gestión de Materias (Jerárquica)</h2>
+                <p>Estructura: <strong>Árbol Binario de Búsqueda (BST)</strong>. Organizado por Código.</p>
+                
+                <div class="flex-row">
+                    <!-- Formulario Ingreso -->
+                    <div class="form-panel">
+                        <h3>Registrar Materia</h3>
+                        <form id="form-materia">
+                            <div class="form-group">
+                                <label>Código (Clave BST):</label>
+                                <input type="text" id="mat-codigo" required placeholder="Ej. MAT-101">
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre de la Materia:</label>
+                                <input type="text" id="mat-nombre" required placeholder="Ej. Álgebra Lineal">
+                            </div>
+                            <div class="form-group">
+                                <label>Créditos:</label>
+                                <input type="number" id="mat-creditos" required min="1" max="10">
+                            </div>
+                            <div class="form-group">
+                                <label>Horario:</label>
+                                <input type="text" id="mat-horario" required placeholder="Ej. Lun-Mie 10:00 - 12:00">
+                            </div>
+                            <button type="submit" class="action-btn">Insertar al Árbol</button>
+                        </form>
+                    </div>
+
+                    <!-- Buscador -->
+                    <div class="form-panel">
+                        <h3>Buscar Materia</h3>
+                        <div class="form-group">
+                            <label>Buscar por Código:</label>
+                            <input type="text" id="search-codigo" placeholder="Ej. MAT-101">
+                        </div>
+                        <button id="btn-buscar-materia" class="action-btn secondary-btn">Buscar en BST</button>
+                        <div id="resultado-busqueda" class="search-result"></div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Recorrido In-Orden (Lista Ordenada)</h3>
+                <div class="table-container">
+                    <table class="data-table" id="tabla-materias">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Materia</th>
+                                <th>Créditos</th>
+                                <th>Horario</th>
+                            </tr>
+                        </thead>
+                        <tbody><!-- Llenado por JS --></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: ESTUDIANTES (LISTA ENLAZADA) -->
+            <section class="page-content" id="estudiantes" style="display: none;">
+                <h2>Registro de Estudiantes (Dinámico)</h2>
+                <p>Estructura: <strong>Lista Enlazada Simple</strong>. Inserción al final $O(1)$.</p>
+                
+                <div class="flex-row">
+                    <div class="form-panel">
+                        <h3>Registrar Nuevo Estudiante</h3>
+                        <form id="form-estudiante">
+                            <div class="form-group">
+                                <label>Identificación / Cédula:</label>
+                                <input type="text" id="est-id" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre Completo:</label>
+                                <input type="text" id="est-nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Carrera:</label>
+                                <input type="text" id="est-carrera" required>
+                            </div>
+                            <button type="submit" class="action-btn">Agregar a la Lista</button>
+                        </form>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Listado Secuencial</h3>
+                <div class="table-container">
+                    <table class="data-table" id="tabla-estudiantes">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Carrera</th>
+                                <th>Fecha Registro</th>
+                            </tr>
+                        </thead>
+                        <tbody><!-- Llenado por JS --></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: TAREAS (COLA) -->
+            <section class="page-content" id="tareas" style="display: none;">
+                <h2>Gestión de Solicitudes (FIFO)</h2>
+                <p>Estructura: <strong>Cola (Queue)</strong>. Se atiende estrictamente en orden de llegada. Enqueue/Dequeue $O(1)$.</p>
+                
+                <div class="flex-row align-start">
+                    <div class="form-panel">
+                        <h3>Agregar Solicitud a la Fila</h3>
+                        <form id="form-tarea">
+                            <div class="form-group">
+                                <label>Descripción de la Tarea/Solicitud:</label>
+                                <input type="text" id="tar-desc" required placeholder="Ej. Revisión de notas">
+                            </div>
+                            <button type="submit" class="action-btn">Formar en la Cola (Enqueue)</button>
+                        </form>
+                    </div>
+
+                    <div class="form-panel dispatch-panel">
+                        <h3>Atención de Fila</h3>
+                        <p>Atender al siguiente en la fila.</p>
+                        <button id="btn-completar-tarea" class="action-btn success-btn">Atender Solicitud (Dequeue)</button>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Fila de Espera Actual</h3>
+                <div class="table-container">
+                    <table class="data-table" id="tabla-tareas">
+                        <thead>
+                            <tr>
+                                <th>Ticket #</th>
+                                <th>Descripción</th>
+                                <th>Hora de Solicitud</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody><!-- Llenado por JS --></tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
 
     <script src="js/app.js"></script>
 </body>
