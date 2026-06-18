@@ -77,3 +77,14 @@ Cada grupo deberá poder explicar:
 •	qué operación resuelve,
 •	qué ventajas ofrece,
 •	y qué complejidad aproximada tiene en sus operaciones principales
+
+
+
+-EXISTEN EN ESTE SISTEMA 4 ROLES, quiero que veas de esta forma y crees un json con estos roles y su cuenta y contraseeña:
+
+ADMINISTRADOR - cuenta: administrador@live.uleam.edu.ec - contraseña: admin123 
+COORDINADOR- cuenta: coordinador@live.uleam.edu.ec - contraseña: coordinador123
+DOCENTE- cuenta: docente@live.uleam.edu.ec - contraseña: docente123
+ESTUDIANTE- cuenta: estudiante@live.uleam.edu.ec - contraseña: estudiante123
+
+la cuestion es que cada un

@@ -72,30 +72,30 @@ async function cargarHistorial() {
     const tabla = document.querySelector('#tabla-historial tbody');
     try {
         const historial = await window.pywebview.api.obtener_historial();
-        
+
         // Llenar tabla en vista "Inicio"
-        if(tabla) {
+        if (tabla) {
             tabla.innerHTML = '';
             historial.forEach(accion => {
                 tabla.innerHTML += `
-                    <tr>
-                        <td>${accion.hora}</td>
-                        <td>${accion.descripcion}</td>
-                    </tr>
-                `;
+                        <tr>
+                            <td>${accion.hora}</td>
+                            <td>${accion.descripcion}</td>
+                        </tr>
+                    `;
             });
         }
-        
+
         // Llenar dropdown de notificaciones
-        if(notifList) {
+        if (notifList) {
             notifList.innerHTML = '';
             historial.forEach(accion => {
                 notifList.innerHTML += `
-                    <li>
-                        <strong>${accion.hora}</strong><br>
-                        ${accion.descripcion}
-                    </li>
-                `;
+                        <li>
+                            <strong>${accion.hora}</strong><br>
+                            ${accion.descripcion}
+                        </li>
+                    `;
             });
             notifBadge.innerText = historial.length;
         }
@@ -111,13 +111,13 @@ async function cargarEstudiantes() {
         tabla.innerHTML = '';
         estudiantes.forEach(est => {
             tabla.innerHTML += `
-                <tr>
-                    <td>${est.identificacion}</td>
-                    <td>${est.nombre}</td>
-                    <td>${est.carrera}</td>
-                    <td>${est.fecha_registro}</td>
-                </tr>
-            `;
+                    <tr>
+                        <td>${est.identificacion}</td>
+                        <td>${est.nombre}</td>
+                        <td>${est.carrera}</td>
+                        <td>${est.fecha_registro}</td>
+                    </tr>
+                `;
         });
     } catch (e) { console.error(e); }
 }
@@ -127,7 +127,7 @@ formEstudiante?.addEventListener('submit', async (e) => {
     const id = document.getElementById('est-id').value;
     const nombre = document.getElementById('est-nombre').value;
     const carrera = document.getElementById('est-carrera').value;
-    
+
     const res = await window.pywebview.api.agregar_estudiante(id, nombre, carrera);
     alert(res.message);
     if (res.success) {
@@ -145,24 +145,24 @@ async function cargarMaterias() {
     try {
         // Retorna la lista in-orden (orden alfabético por código)
         const materias = await window.pywebview.api.obtener_materias();
-        
+
         // Llenar tabla en vista "Cursos"
-        if(tabla) {
+        if (tabla) {
             tabla.innerHTML = '';
             materias.forEach(mat => {
                 tabla.innerHTML += `
-                    <tr>
-                        <td><strong>${mat.codigo}</strong></td>
-                        <td>${mat.nombre}</td>
-                        <td>${mat.creditos}</td>
-                        <td>${mat.horario || 'Por definir'}</td>
-                    </tr>
-                `;
+                        <tr>
+                            <td><strong>${mat.codigo}</strong></td>
+                            <td>${mat.nombre}</td>
+                            <td>${mat.creditos}</td>
+                            <td>${mat.horario || 'Por definir'}</td>
+                        </tr>
+                    `;
             });
         }
 
         // Llenar Grid en vista "Mi Portal"
-        if(gridEstudiante) {
+        if (gridEstudiante) {
             gridEstudiante.innerHTML = '';
             materias.forEach(mat => {
                 // Seleccionar un icono al azar basado en el código
@@ -170,18 +170,18 @@ async function cargarMaterias() {
                 const icon = icons[mat.codigo.length % icons.length];
 
                 gridEstudiante.innerHTML += `
-                    <div class="subject-card">
-                        <div class="subject-img">
-                            <i class="fas ${icon}"></i>
+                        <div class="subject-card">
+                            <div class="subject-img">
+                                <i class="fas ${icon}"></i>
+                            </div>
+                            <div class="subject-info">
+                                <h4>${mat.nombre}</h4>
+                                <p><i class="fas fa-barcode"></i> Código: ${mat.codigo}</p>
+                                <p><i class="far fa-clock"></i> ${mat.horario || 'Por definir'}</p>
+                                <p><i class="fas fa-award"></i> Créditos: ${mat.creditos}</p>
+                            </div>
                         </div>
-                        <div class="subject-info">
-                            <h4>${mat.nombre}</h4>
-                            <p><i class="fas fa-barcode"></i> Código: ${mat.codigo}</p>
-                            <p><i class="far fa-clock"></i> ${mat.horario || 'Por definir'}</p>
-                            <p><i class="fas fa-award"></i> Créditos: ${mat.creditos}</p>
-                        </div>
-                    </div>
-                `;
+                    `;
             });
         }
 
@@ -194,7 +194,7 @@ formMateria?.addEventListener('submit', async (e) => {
     const nombre = document.getElementById('mat-nombre').value;
     const creditos = document.getElementById('mat-creditos').value;
     const horario = document.getElementById('mat-horario').value;
-    
+
     const res = await window.pywebview.api.agregar_materia(codigo, nombre, parseInt(creditos), horario);
     alert(res.message);
     if (res.success) {
@@ -208,7 +208,7 @@ btnBuscarMateria?.addEventListener('click', async () => {
     const codigo = document.getElementById('search-codigo').value;
     const divRes = document.getElementById('resultado-busqueda');
     const res = await window.pywebview.api.buscar_materia(codigo);
-    
+
     divRes.style.display = 'block';
     if (res.success) {
         divRes.innerHTML = `<i class="fas fa-check-circle" style="color: #10b981;"></i> <strong>Encontrada:</strong> ${res.data.nombre} (${res.data.creditos} créditos)<br>Horario: ${res.data.horario}`;
@@ -225,13 +225,13 @@ async function cargarTareas() {
         tabla.innerHTML = '';
         tareas.forEach(tar => {
             tabla.innerHTML += `
-                <tr>
-                    <td>#${tar.id_tarea}</td>
-                    <td>${tar.descripcion}</td>
-                    <td>${tar.fecha_creacion}</td>
-                    <td><span style="color: #f59e0b; font-weight: bold;">${tar.estado}</span></td>
-                </tr>
-            `;
+                    <tr>
+                        <td>#${tar.id_tarea}</td>
+                        <td>${tar.descripcion}</td>
+                        <td>${tar.fecha_creacion}</td>
+                        <td><span style="color: #f59e0b; font-weight: bold;">${tar.estado}</span></td>
+                    </tr>
+                `;
         });
     } catch (e) { console.error(e); }
 }
@@ -239,7 +239,7 @@ async function cargarTareas() {
 formTarea?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const desc = document.getElementById('tar-desc').value;
-    
+
     const res = await window.pywebview.api.agregar_tarea(desc);
     if (res.success) {
         formTarea.reset();
@@ -262,7 +262,7 @@ btnCompletarTarea?.addEventListener('click', async () => {
 // EVENTOS BASE Y TEMA
 // ==========================================
 
-window.addEventListener('pywebviewready', function() {
+window.addEventListener('pywebviewready', function () {
     console.log("Motor de Python conectado (Estructuras de datos listas)");
 
     // --- LOGIN ---
@@ -271,7 +271,7 @@ window.addEventListener('pywebviewready', function() {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const respuesta = await window.pywebview.api.login(email, password);
-        
+
         if (respuesta.success) showDashboard();
         else alert(`Error: ${respuesta.message}`);
     });
@@ -283,7 +283,7 @@ btnRefreshHistorial?.addEventListener('click', () => cargarHistorial());
 
 // Dropdown de notificaciones toggle
 btnNotificaciones?.addEventListener('click', () => {
-    if(notifDropdown.style.display === 'none') {
+    if (notifDropdown.style.display === 'none') {
         notifDropdown.style.display = 'block';
         cargarHistorial(); // Asegurarnos de que esté actualizado
     } else {
@@ -293,7 +293,7 @@ btnNotificaciones?.addEventListener('click', () => {
 
 // Cerrar dropdown al hacer clic fuera
 document.addEventListener('click', (e) => {
-    if(btnNotificaciones && notifDropdown && !btnNotificaciones.contains(e.target) && !notifDropdown.contains(e.target)) {
+    if (btnNotificaciones && notifDropdown && !btnNotificaciones.contains(e.target) && !notifDropdown.contains(e.target)) {
         notifDropdown.style.display = 'none';
     }
 });
