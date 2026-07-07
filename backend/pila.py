@@ -1,17 +1,3 @@
-"""
-ESTRUCTURA DE DATOS: PILA (Stack)
-¿Qué estructura utilizó?: Pila (Stack) basada en Nodos enlazados (Lista Enlazada simple).
-¿Por qué la eligió?: Porque el historial de acciones funciona bajo el principio LIFO (Last In, First Out). 
-                    Lo último que el usuario hizo es lo primero que desea ver en su registro reciente.
-¿Qué operación resuelve?: Registro y consulta del historial de navegación o acciones.
-¿Qué ventajas ofrece?: Inserción y extracción en tiempo constante O(1), sin necesidad de reasignar 
-                       memoria secuencial como ocurriría con arreglos estáticos.
-¿Qué complejidad aproximada tiene?: 
-    - Inserción (push): O(1)
-    - Extracción (pop): O(1)
-    - Consulta tope (peek): O(1)
-"""
-
 class NodoPila:
     def __init__(self, dato):
         self.dato = dato

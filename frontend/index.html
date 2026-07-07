@@ -25,12 +25,12 @@
             <form id="login-form">
                 <div class="form-group">
                     <label for="email">Correo Institucional</label>
-                    <input type="email" id="email" name="email" placeholder="usuario@universidad.edu" required autocomplete="email">
+                    <input type="email" id="email" name="email" placeholder="admin@gmail.com, docente@gmail.com o estudiante@gmail.com" required autocomplete="email">
                 </div>
 
                 <div class="form-group">
                     <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="current-password">
+                    <input type="password" id="password" name="password" placeholder="123456" required autocomplete="current-password">
                 </div>
 
                 <div class="form-options">
@@ -45,10 +45,19 @@
                     Iniciar Sesión
                 </button>
             </form>
+
+            <div class="quick-login-container" style="margin-top: 1.5rem; text-align: center; border-top: 1px solid var(--sidebar-border); padding-top: 1rem;">
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.6rem;">Cuentas de Prueba:</p>
+                <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+                    <button type="button" class="quick-login-btn" data-email="admin@gmail.com">Admin</button>
+                    <button type="button" class="quick-login-btn" data-email="docente@gmail.com">Docente</button>
+                    <button type="button" class="quick-login-btn" data-email="estudiante@gmail.com">Estudiante</button>
+                </div>
+            </div>
             
             <div class="skip-container">
                 <button type="button" id="btn-skip-login" class="skip-btn">
-                    Saltar Login (Modo Dev)
+                    Saltar Login
                 </button>
             </div>
         </main>
@@ -64,19 +73,23 @@
                 <h2>Sapiens</h2>
             </div>
             <nav class="sidebar-nav">
-                <button class="nav-btn active" data-target="mi-portal"><i class="fas fa-home"></i> <span>Mi Portal</span></button>
-                <button class="nav-btn" data-target="inicio"><i class="fas fa-history"></i> <span>Historial (Pila)</span></button>
-                <button class="nav-btn" data-target="cursos"><i class="fas fa-book"></i> <span>Materias (Árbol BST)</span></button>
-                <button class="nav-btn" data-target="estudiantes"><i class="fas fa-users"></i> <span>Estudiantes (Lista)</span></button>
-                <button class="nav-btn" data-target="tareas"><i class="fas fa-tasks"></i> <span>Solicitudes (Cola)</span></button>
-                <button class="nav-btn" data-target="opciones"><i class="fas fa-cog"></i> <span>Opciones</span></button>
+                <button class="nav-btn active" data-target="mi-portal" data-roles="estudiante,docente"><i class="fas fa-home"></i> <span>Mi Portal</span></button>
+                <button class="nav-btn" data-target="mis-calificaciones" data-roles="estudiante"><i class="fas fa-graduation-cap"></i> <span>Calificaciones</span></button>
+                <button class="nav-btn" data-target="buzon" data-roles="estudiante"><i class="fas fa-inbox"></i> <span>Buzón</span></button>
+                <button class="nav-btn" data-target="inicio" data-roles="admin,docente"><i class="fas fa-history"></i> <span>Historial (Pila)</span></button>
+                <button class="nav-btn" data-target="cursos" data-roles="admin"><i class="fas fa-book"></i> <span>Materias (Árbol)</span></button>
+                <button class="nav-btn" data-target="estudiantes" data-roles="admin"><i class="fas fa-users"></i> <span>Estudiantes (Lista)</span></button>
+                <button class="nav-btn" data-target="docentes-panel" data-roles="admin"><i class="fas fa-chalkboard-teacher"></i> <span>Docentes (Lista)</span></button>
+                <button class="nav-btn" data-target="carreras-panel" data-roles="admin"><i class="fas fa-graduation-cap"></i> <span>Carreras</span></button>
+                <button class="nav-btn" data-target="tareas" data-roles="estudiante,docente"><i class="fas fa-exclamation-triangle"></i> <span>Incidencias (Cola)</span></button>
+                <button class="nav-btn" data-target="opciones" data-roles="estudiante,docente,admin"><i class="fas fa-cog"></i> <span>Opciones</span></button>
             </nav>
             <div class="sidebar-footer">
                 <button id="btn-logout" class="nav-btn logout-btn"><i class="fas fa-sign-out-alt"></i> <span>Cerrar Sesión</span></button>
-            </div>
         </aside>
-
-        <!-- Área principal de contenido -->
+        
+        <!-- Resizer de barra lateral -->
+        <div id="sidebar-resizer" style="width: 4px; cursor: col-resize; background: transparent; z-index: 100; align-self: stretch; transition: background 0.2s;" onmouseover="this.style.background='var(--primary)'" onmouseout="this.style.background='transparent'"></div>
         <main class="main-content">
             
             <!-- HEADER GLOBAL DEL DASHBOARD -->
@@ -91,13 +104,17 @@
                     </button>
                     <!-- Dropdown de notificaciones -->
                     <div id="notif-dropdown" class="notif-dropdown" style="display: none;">
-                        <div class="notif-header">
-                            <h4>Notificaciones Recientes</h4>
-                            <span style="font-size: 0.8rem; color: var(--text-muted);">(Pila LIFO)</span>
+                        <div class="notif-header" style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; border-bottom: 1px solid var(--input-border);">
+                            <h4 style="margin: 0; font-size: 0.95rem;">Notificaciones Recientes</h4>
                         </div>
-                        <ul id="notif-list" class="notif-list">
+                        <ul id="notif-list" class="notif-list" style="max-height: 250px; overflow-y: auto;">
                             <!-- Llenado por JS -->
                         </ul>
+                        <div style="padding: 0.6rem; border-top: 1px solid var(--input-border); text-align: center;">
+                            <button id="btn-limpiar-notificaciones" class="action-btn secondary-btn" style="width: 100%; margin: 0; padding: 0.4rem; font-size: 0.8rem;">
+                                <i class="fas fa-check-double"></i> Limpiar Notificaciones
+                            </button>
+                        </div>
                     </div>
                 </div>
             </header>
@@ -105,7 +122,7 @@
             <!-- SECCIÓN: MI PORTAL (DASHBOARD DEL ESTUDIANTE) -->
             <section class="page-content" id="mi-portal">
                 <div class="welcome-card" style="margin-bottom: 2rem;">
-                    <h2>¡Bienvenido a tu Portal Académico!</h2>
+                    <h2 id="welcome-title">¡Bienvenido a tu Portal Académico!</h2>
                     <p>Aquí tienes un resumen de tu actividad, calendario y materias asignadas.</p>
                 </div>
 
@@ -133,15 +150,36 @@
                 <div class="subjects-grid" id="student-subjects-grid">
                     <!-- Las tarjetas se generan por JS leyendo el Árbol BST -->
                 </div>
+
+                <!-- Tabla de Tareas Pendientes -->
+                <h3 id="portal-tareas-titulo" style="margin-top: 3rem; margin-bottom: 1rem;"><i class="fas fa-clock"></i> Tareas Pendientes</h3>
+                <div class="table-container" id="portal-tareas-table-container">
+                    <table class="data-table" id="tabla-tareas-pendientes">
+                        <thead>
+                            <tr>
+                                <th>Materia</th>
+                                <th>Tarea / Deber</th>
+                                <th>Fecha Límite</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Llenado dinámico por JS -->
+                        </tbody>
+                    </table>
+                </div>
             </section>
 
             <!-- SECCIÓN: INICIO (PILA HISTORIAL) -->
             <section class="page-content" id="inicio" style="display: none;">
                 <div class="welcome-card" style="margin-bottom: 2rem;">
-                    <h2>Registro de Acciones (LIFO)</h2>
-                    <p>Esta sección lee la <strong>Pila</strong> del sistema. Muestra las últimas acciones registradas en orden inverso.</p>
+                    <h2>Registro de Acciones</h2>
+                    <p>Muestra el historial cronológico de las últimas operaciones realizadas en la plataforma.</p>
                 </div>
-                <button id="btn-refresh-historial" class="action-btn" style="width: auto;"><i class="fas fa-sync-alt"></i> Refrescar Historial</button>
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+                    <button id="btn-refresh-historial" class="action-btn" style="width: auto; margin-top: 0;"><i class="fas fa-sync-alt"></i> Refrescar Historial</button>
+                    <button id="btn-limpiar-historial" class="action-btn secondary-btn" style="width: auto; margin-top: 0;"><i class="fas fa-trash-alt"></i> Limpiar Historial</button>
+                </div>
                 <div class="table-container">
                     <table class="data-table" id="tabla-historial">
                         <thead>
@@ -159,31 +197,62 @@
 
             <!-- SECCIÓN: CURSOS/MATERIAS (ÁRBOL BST) -->
             <section class="page-content" id="cursos" style="display: none;">
-                <h2>Gestión de Materias (Jerárquica)</h2>
-                <p>Estructura: <strong>Árbol Binario de Búsqueda (BST)</strong>. Organizado por Código.</p>
+                <h2>Gestión de Materias</h2>
+                <p>Administración y consulta del catálogo general de materias de la institución.</p>
                 
                 <div class="flex-row">
                     <!-- Formulario Ingreso -->
-                    <div class="form-panel">
+                    <div class="form-panel" id="panel-registrar-materia">
                         <h3>Registrar Materia</h3>
                         <form id="form-materia">
                             <div class="form-group">
-                                <label>Código (Clave BST):</label>
+                                <label>Código de la Materia:</label>
                                 <input type="text" id="mat-codigo" required placeholder="Ej. MAT-101">
                             </div>
                             <div class="form-group">
                                 <label>Nombre de la Materia:</label>
                                 <input type="text" id="mat-nombre" required placeholder="Ej. Álgebra Lineal">
                             </div>
+                            <div style="display: flex; gap: 1rem;">
+                                <div class="form-group" style="flex: 1;">
+                                    <label>Créditos:</label>
+                                    <input type="number" id="mat-creditos" required min="1" max="10">
+                                </div>
+                                <div class="form-group" style="flex: 1;">
+                                    <label>Paralelo:</label>
+                                    <select id="mat-paralelo" required style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit; font-size: 0.95rem; outline: none;">
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group">
-                                <label>Créditos:</label>
-                                <input type="number" id="mat-creditos" required min="1" max="10">
+                                <label>Docente Asignado:</label>
+                                <select id="mat-docente" required style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit; font-size: 0.95rem; outline: none;">
+                                    <option value="">Cargando docentes...</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Horario:</label>
                                 <input type="text" id="mat-horario" required placeholder="Ej. Lun-Mie 10:00 - 12:00">
                             </div>
-                            <button type="submit" class="action-btn">Insertar al Árbol</button>
+                            <div class="form-group">
+                                <label>Semestre:</label>
+                                <select id="mat-semestre" required style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit; font-size: 0.95rem; outline: none;">
+                                    <option value="1">1er Semestre</option>
+                                    <option value="2">2do Semestre</option>
+                                    <option value="3">3er Semestre</option>
+                                    <option value="4">4to Semestre</option>
+                                    <option value="5">5to Semestre</option>
+                                    <option value="6">6to Semestre</option>
+                                    <option value="7">7mo Semestre</option>
+                                    <option value="8">8vo Semestre</option>
+                                    <option value="9">9no Semestre</option>
+                                    <option value="10">10mo Semestre</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="action-btn">Registrar Materia</button>
                         </form>
                     </div>
 
@@ -194,12 +263,12 @@
                             <label>Buscar por Código:</label>
                             <input type="text" id="search-codigo" placeholder="Ej. MAT-101">
                         </div>
-                        <button id="btn-buscar-materia" class="action-btn secondary-btn">Buscar en BST</button>
+                        <button id="btn-buscar-materia" class="action-btn secondary-btn">Buscar Materia</button>
                         <div id="resultado-busqueda" class="search-result"></div>
                     </div>
                 </div>
 
-                <h3 style="margin-top: 2rem;">Recorrido In-Orden (Lista Ordenada)</h3>
+                <h3 style="margin-top: 2rem;">Materias Registradas</h3>
                 <div class="table-container">
                     <table class="data-table" id="tabla-materias">
                         <thead>
@@ -208,17 +277,23 @@
                                 <th>Materia</th>
                                 <th>Créditos</th>
                                 <th>Horario</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody><!-- Llenado por JS --></tbody>
                     </table>
                 </div>
+                <!-- Buttons below materias list for Admin -->
+                <div id="admin-actions-materias" style="margin-top: 1.5rem; display: none; justify-content: flex-end; gap: 0.5rem;">
+                    <button id="btn-abrir-inscribir-estudiantes" class="action-btn" style="width: auto; padding: 0.8rem 1.5rem;"><i class="fas fa-user-plus"></i> Inscribir Estudiantes</button>
+                    <button id="btn-abrir-asignar-docente" class="action-btn" style="width: auto; padding: 0.8rem 1.5rem;"><i class="fas fa-user-tag"></i> Asignar Docente a Materia</button>
+                </div>
             </section>
 
             <!-- SECCIÓN: ESTUDIANTES (LISTA ENLAZADA) -->
             <section class="page-content" id="estudiantes" style="display: none;">
-                <h2>Registro de Estudiantes (Dinámico)</h2>
-                <p>Estructura: <strong>Lista Enlazada Simple</strong>. Inserción al final $O(1)$.</p>
+                <h2>Registro de Estudiantes</h2>
+                <p>Administración y registro de los estudiantes matriculados en la institución.</p>
                 
                 <div class="flex-row">
                     <div class="form-panel">
@@ -233,15 +308,32 @@
                                 <input type="text" id="est-nombre" required>
                             </div>
                             <div class="form-group">
-                                <label>Carrera:</label>
-                                <input type="text" id="est-carrera" required>
+                                <label>Carreras (Selecciona 1 o Máx 2):</label>
+                                <div id="est-carreras-checkboxes" style="border: 2px solid var(--input-border); border-radius: 12px; background: var(--input-bg); padding: 0.8rem; max-height: 120px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
+                                    <!-- Checkboxes de carreras cargados por JS -->
+                                </div>
                             </div>
-                            <button type="submit" class="action-btn">Agregar a la Lista</button>
+                            <div class="form-group">
+                                <label>Semestre:</label>
+                                <select id="est-semestre" required style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit; font-size: 0.95rem; outline: none;">
+                                    <option value="1">1er Semestre</option>
+                                    <option value="2">2do Semestre</option>
+                                    <option value="3">3er Semestre</option>
+                                    <option value="4">4to Semestre</option>
+                                    <option value="5">5to Semestre</option>
+                                    <option value="6">6to Semestre</option>
+                                    <option value="7">7mo Semestre</option>
+                                    <option value="8">8vo Semestre</option>
+                                    <option value="9">9no Semestre</option>
+                                    <option value="10">10mo Semestre</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="action-btn">Registrar Estudiante</button>
                         </form>
                     </div>
                 </div>
 
-                <h3 style="margin-top: 2rem;">Listado Secuencial</h3>
+                <h3 style="margin-top: 2rem;">Estudiantes Registrados</h3>
                 <div class="table-container">
                     <table class="data-table" id="tabla-estudiantes">
                         <thead>
@@ -249,6 +341,7 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Carrera</th>
+                                <th>Semestre</th>
                                 <th>Fecha Registro</th>
                             </tr>
                         </thead>
@@ -259,29 +352,33 @@
 
             <!-- SECCIÓN: TAREAS (COLA) -->
             <section class="page-content" id="tareas" style="display: none;">
-                <h2>Gestión de Solicitudes (FIFO)</h2>
-                <p>Estructura: <strong>Cola (Queue)</strong>. Se atiende estrictamente en orden de llegada. Enqueue/Dequeue $O(1)$.</p>
+                <h2>Gestión de Solicitudes</h2>
+                <p>Atención de trámites académicos y consultas en orden riguroso de llegada.</p>
                 
                 <div class="flex-row align-start">
-                    <div class="form-panel">
-                        <h3>Agregar Solicitud a la Fila</h3>
+                    <div class="form-panel" id="panel-agregar-tarea">
+                        <h3>Agregar Solicitud</h3>
                         <form id="form-tarea">
                             <div class="form-group">
                                 <label>Descripción de la Tarea/Solicitud:</label>
                                 <input type="text" id="tar-desc" required placeholder="Ej. Revisión de notas">
                             </div>
-                            <button type="submit" class="action-btn">Formar en la Cola (Enqueue)</button>
+                            <button type="submit" class="action-btn">Enviar Solicitud</button>
                         </form>
                     </div>
 
-                    <div class="form-panel dispatch-panel">
-                        <h3>Atención de Fila</h3>
-                        <p>Atender al siguiente en la fila.</p>
-                        <button id="btn-completar-tarea" class="action-btn success-btn">Atender Solicitud (Dequeue)</button>
+                    <div class="form-panel dispatch-panel" id="panel-atender-tarea">
+                        <h3>Atención de Solicitudes</h3>
+                        <p style="margin-bottom: 1rem;">Atender al siguiente estudiante en espera.</p>
+                        <div class="form-group">
+                            <label>Mensaje de Respuesta / Resolución:</label>
+                            <textarea id="inc-respuesta-mensaje" required placeholder="Escribe el mensaje de respuesta para el estudiante..." style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit; font-size: 0.95rem; min-height: 80px; outline: none; resize: vertical; margin-bottom: 1rem;"></textarea>
+                        </div>
+                        <button id="btn-completar-tarea" class="action-btn success-btn">Despachar Siguiente Solicitud</button>
                     </div>
                 </div>
 
-                <h3 style="margin-top: 2rem;">Fila de Espera Actual</h3>
+                <h3 style="margin-top: 2rem;">Bandeja de Solicitudes en Espera</h3>
                 <div class="table-container">
                     <table class="data-table" id="tabla-tareas">
                         <thead>
@@ -297,6 +394,109 @@
                 </div>
             </section>
 
+            <!-- SECCIÓN: DOCENTES (LISTA ENLAZADA REUTILIZADA) -->
+            <section class="page-content" id="docentes-panel" style="display: none;">
+                <h2>Registro de Docentes</h2>
+                <p>Administración y registro de los docentes contratados y asignación de sus cursos.</p>
+                
+                <div class="flex-row">
+                    <div class="form-panel">
+                        <h3>Registrar Nuevo Docente</h3>
+                        <form id="form-docente">
+                            <div class="form-group">
+                                <label>Cédula / Identificación:</label>
+                                <input type="text" id="doc-id" required placeholder="Ej. 1312345678">
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre Completo:</label>
+                                <input type="text" id="doc-nombre" required placeholder="Ej. Dr. Carlos Mendoza">
+                            </div>
+                            <div class="form-group">
+                                <label>Área de Especialidad:</label>
+                                <input type="text" id="doc-especialidad" required placeholder="Ej. Estructuras de Datos, Prótesis Fija">
+                            </div>
+                            <div class="form-group">
+                                <label>Carreras en las que dicta clases (Selecciona 1 o varias):</label>
+                                <div id="doc-carreras-checkboxes" style="border: 2px solid var(--input-border); border-radius: 12px; background: var(--input-bg); padding: 0.8rem; max-height: 120px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
+                                    <!-- Checkboxes de carreras cargados por JS -->
+                                </div>
+                            </div>
+                            <button type="submit" class="action-btn">Registrar Docente</button>
+                        </form>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Docentes Registrados</h3>
+                <div class="table-container">
+                    <table class="data-table" id="tabla-docentes">
+                        <thead>
+                            <tr>
+                                <th>Cédula</th>
+                                <th>Nombre</th>
+                                <th>Carrera</th>
+                                <th>Fecha Registro</th>
+                            </tr>
+                        </thead>
+                        <tbody><!-- Llenado por JS --></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: CARRERAS -->
+            <section class="page-content" id="carreras-panel" style="display: none;">
+                <h2>Gestión de Carreras</h2>
+                <p>Administración y registro de las carreras profesionales ofertadas por la institución.</p>
+                
+                <div class="flex-row">
+                    <div class="form-panel">
+                        <h3>Registrar Nueva Carrera</h3>
+                        <form id="form-carrera">
+                            <div class="form-group">
+                                <label>Nombre de la Carrera:</label>
+                                <input type="text" id="car-nombre" required placeholder="Ej. Ingeniería en Sistemas">
+                            </div>
+                            <div class="form-group">
+                                <label>Duración en Semestres:</label>
+                                <select id="car-semestres" required style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit; font-size: 0.95rem; outline: none;">
+                                    <option value="1">1 Semestre</option>
+                                    <option value="2">2 Semestres</option>
+                                    <option value="3">3 Semestres</option>
+                                    <option value="4">4 Semestres</option>
+                                    <option value="5">5 Semestres</option>
+                                    <option value="6">6 Semestres</option>
+                                    <option value="7">7 Semestres</option>
+                                    <option value="8">8 Semestres</option>
+                                    <option value="9">9 Semestres</option>
+                                    <option value="10" selected>10 Semestres</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Breve Descripción:</label>
+                                <textarea id="car-descripcion" required placeholder="Describe brevemente el perfil o enfoque de la carrera..." style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit; font-size: 0.95rem; min-height: 80px; resize: vertical; outline: none;"></textarea>
+                            </div>
+                            <button type="submit" class="action-btn">Registrar Carrera</button>
+                        </form>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Carreras Registradas</h3>
+                <div class="table-container">
+                    <table class="data-table" id="tabla-carreras">
+                        <thead>
+                            <tr>
+                                <th>Nombre de la Carrera</th>
+                                <th>Semestres</th>
+                                <th>Descripción</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody><!-- Llenado por JS --></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ELIMINADO: SECCIÓN ASIGNACIÓN -->
+
             <!-- SECCIÓN: OPCIONES -->
             <section class="page-content" id="opciones" style="display: none;">
                 <div class="welcome-card" style="margin-bottom: 2rem;">
@@ -304,7 +504,7 @@
                 </div>
 
                 <div class="flex-row align-start">
-                    <div class="form-panel" style="max-width: 600px; width: 100%;">
+                    <div class="form-panel">
                         <h3 style="margin-bottom: 1rem;"><i class="fas fa-palette"></i> Apariencia</h3>
                         <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">
                             Personaliza el aspecto de la plataforma.
@@ -315,7 +515,7 @@
                                 <strong style="display: block; color: var(--text-main); font-size: 1.05rem; margin-bottom: 0.2rem;">Tema de la Interfaz</strong>
                                 <span style="font-size: 0.85rem; color: var(--text-muted);">Cambiar entre el modo claro y el modo oscuro.</span>
                             </div>
-                            <button id="theme-toggle" class="theme-toggle-btn" style="border-radius: 50px;">
+                            <button id="theme-toggle" class="theme-toggle-btn">
                                 <i class="fas fa-moon"></i> Modo Oscuro
                             </button>
                         </div>
@@ -323,7 +523,404 @@
                 </div>
             </section>
 
+            <!-- SECCIÓN: DETALLE DE MATERIA (VISTA DE CURSO CON SEMANAS Y TAREAS) -->
+            <section class="page-content" id="detalle-materia" style="display: none; padding: 2rem;">
+                <div class="welcome-card" style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h2 id="det-materia-titulo">Nombre de la Materia</h2>
+                        <p id="det-materia-info">Código: INF-101 | Créditos: 4 | Horario: Lun-Mie 10:00</p>
+                    </div>
+                    <button id="btn-volver-materias" class="action-btn secondary-btn" style="width: auto; margin-top: 0;"><i class="fas fa-arrow-left"></i> Volver</button>
+                </div>
+
+                <!-- Selector Vertical de Semanas al Lateral Izquierdo -->
+                <div style="display: flex; gap: 2rem; align-items: flex-start; width: 100%; flex-wrap: wrap;">
+                    
+                    <div class="weeks-bar-container" style="width: 160px; min-width: 160px; padding: 0.8rem; background: var(--nav-hover); border-radius: 20px; display: flex; flex-direction: column; gap: 0.5rem; max-height: 80vh; overflow-y: auto;">
+                        <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: bold; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 0.5rem; display: block; text-align: center;">Semanas</span>
+                        <div id="lista-semanas" style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%;">
+                            <!-- Botones Semana 1 a 16 creados por JS -->
+                        </div>
+                    </div>
+                    
+                    <!-- Contenedor Principal en Flexbox para la distribución de la pantalla -->
+                    <div id="materia-contenido-grid" style="flex: 1; display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap; min-width: 350px;">
+                    
+                    <!-- Panel Izquierdo: Lista de Tareas (Deberes) de la semana seleccionada -->
+                    <div class="form-panel" id="panel-deberes-lista" style="flex: 1.3; min-width: 350px; padding: 2rem; border-radius: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.5rem;">
+                            <h3 id="titulo-semana-activa" style="margin-bottom: 0; border: none; padding: 0; font-size: 1.4rem;">Semana 1</h3>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button id="btn-mostrar-deberes" class="action-btn" style="width: auto; margin: 0; padding: 0.4rem 0.8rem; font-size: 0.8rem; display: none;"><i class="fas fa-book-open"></i> Deberes</button>
+                                <button id="btn-mostrar-alumnos" class="action-btn secondary-btn" style="width: auto; margin: 0; padding: 0.4rem 0.8rem; font-size: 0.8rem; display: none;"><i class="fas fa-users"></i> Alumnos</button>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Deberes de la semana -->
+                        <div id="lista-deberes" style="display: flex; flex-direction: column; gap: 1.2rem;">
+                            <!-- Cargado por JS -->
+                        </div>
+                    </div>
+
+                    <!-- Panel Derecho: Acciones de Tareas (Crear Tarea o Ver Entregas) -->
+                    <div class="form-panel" id="panel-deberes-acciones" style="flex: 1; min-width: 300px; padding: 2rem; border-radius: 20px;">
+                        
+                        <!-- Contenedor por defecto si no hay acción o formulario abierto -->
+                        <div id="action-panel-placeholder" style="text-align: center; padding: 4rem 1.5rem; color: var(--text-muted);">
+                            <i class="fas fa-tasks" style="font-size: 3.5rem; color: var(--primary); opacity: 0.5; margin-bottom: 1.2rem; display: block;"></i>
+                            <p style="font-size: 1.05rem; line-height: 1.5; margin-bottom: 1.5rem;">
+                                Selecciona una tarea para ver detalles y realizar acciones, o crea una nueva tarea para esta semana.
+                            </p>
+                            <!-- Botón visible solo para Docente -->
+                            <button id="btn-abrir-nueva-tarea" class="action-btn" style="width: auto; margin: 0 auto; display: none;"><i class="fas fa-plus"></i> Crear Nueva Tarea</button>
+                        </div>
+
+                        <!-- Formulario para crear nueva tarea (Docente) -->
+                        <div id="form-nueva-tarea-container" style="display: none;">
+                            <h3 style="margin-bottom: 1.5rem; display: block; border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; width: 100%; font-size: 1.3rem;"><i class="fas fa-edit"></i> Crear Tarea Académica</h3>
+                            
+                            <div class="form-group">
+                                <label>Título de la Tarea:</label>
+                                <input type="text" id="nueva-tar-titulo" required placeholder="Ej. Tarea 1: Pilas y Colas">
+                            </div>
+                            
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <div class="form-group" style="flex: 1; min-width: 100px;">
+                                    <label>Puntos Máximos:</label>
+                                    <input type="number" id="nueva-tar-puntos" min="1" max="100" value="10" placeholder="Ej. 10">
+                                </div>
+                                <div class="form-group" style="flex: 1; min-width: 120px;">
+                                    <label>Formato Requerido:</label>
+                                    <input type="text" id="nueva-tar-formato" placeholder="Ej. PDF, ZIP, .py">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Fecha Límite:</label>
+                                <input type="datetime-local" id="nueva-tar-fecha-limite">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Descripción / Instrucciones:</label>
+                                <textarea id="nueva-tar-desc" required placeholder="Detalla las instrucciones de la tarea..." style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit; resize: vertical; min-height: 120px; outline: none;"></textarea>
+                            </div>
+                            
+                            <div style="display: flex; gap: 0.5rem; margin-top: 1.5rem;">
+                                <button id="btn-guardar-nueva-tarea" class="action-btn" style="margin-top: 0; width: auto; padding: 0.8rem 1.5rem;"><i class="fas fa-save"></i> Guardar</button>
+                                <button id="btn-cancelar-nueva-tarea" class="action-btn secondary-btn" style="margin-top: 0; width: auto; padding: 0.8rem 1.5rem;">Cancelar</button>
+                            </div>
+                        </div>
+
+                        <!-- Panel para Ver Entregas (Docente) -->
+                        <div id="panel-ver-entregas-container" style="display: none;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+                                <h3 id="ver-entregas-tarea-titulo" style="margin-bottom: 0; border: none; padding: 0; font-size: 1.3rem;"><i class="fas fa-users-cog"></i> Entregas Recibidas</h3>
+                            </div>
+                            <p id="ver-entregas-tarea-detalles" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.4;"></p>
+                            
+                            <!-- Lista con scroll de alumnos y sus tareas -->
+                            <div id="lista-entregas-estudiantes" style="display: flex; flex-direction: column; gap: 0.8rem; max-height: 450px; overflow-y: auto; padding-right: 0.2rem;">
+                                <!-- Llenado dinámico por JS -->
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: MIS CALIFICACIONES (ESTUDIANTE) -->
+            <section class="page-content" id="mis-calificaciones" style="display: none;">
+                <h2>Mis Calificaciones Académicas</h2>
+                <p>Consulta tus calificaciones detalladas y tu promedio general acumulado por materia.</p>
+                
+                <div class="flex-row align-start">
+                    <!-- Panel Izquierdo: Materias Inscritas y Promedio General -->
+                    <div class="form-panel" style="flex: 1; padding: 2rem;">
+                        <h3>Promedio General</h3>
+                        <div style="text-align: center; padding: 2rem 1rem; background: var(--nav-hover); border-radius: 16px; margin-bottom: 1.5rem;">
+                            <span style="font-size: 3.5rem; font-weight: 700; color: var(--primary); display: block;" id="promedio-general-valor">0.0</span>
+                            <span style="font-size: 0.9rem; color: var(--text-muted);">Promedio Total Académico</span>
+                        </div>
+                        
+                        <h4 style="margin-bottom: 1rem; color: var(--text-main);">Materias Inscritas</h4>
+                        <div id="lista-materias-calificaciones" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <!-- Llenado dinámico por JS -->
+                        </div>
+                    </div>
+                    
+                    <!-- Panel Derecho: Detalle de Tareas de la Materia Seleccionada -->
+                    <div class="form-panel" id="panel-detalle-calificaciones-materia" style="flex: 1.5; padding: 2rem; display: none;">
+                        <h3 id="detalle-calif-materia-titulo">Selecciona una materia</h3>
+                        <p id="detalle-calif-materia-subtitulo" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;"></p>
+                        
+                        <div class="table-container" style="margin-top: 0; background: transparent; padding: 0; box-shadow: none;">
+                            <table class="data-table" id="tabla-calificaciones-tareas">
+                                <thead>
+                                    <tr>
+                                        <th>Tarea / Deber</th>
+                                        <th>Fecha de Entrega</th>
+                                        <th>Calificación</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Llenado dinámico por JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Placeholder Derecho -->
+                    <div class="form-panel" id="panel-detalle-calificaciones-placeholder" style="flex: 1.5; padding: 4rem 2rem; text-align: center; color: var(--text-muted);">
+                        <i class="fas fa-chart-line" style="font-size: 4rem; color: var(--primary); opacity: 0.4; margin-bottom: 1rem; display: block;"></i>
+                        <p>Haz clic en una materia de la izquierda para ver el desglose de tareas entregadas y sus calificaciones.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: BUZÓN (INCIDENCIAS RESUELTAS DEL ESTUDIANTE) -->
+            <section class="page-content" id="buzon" style="display: none;">
+                <h2>Buzón de Incidencias Resueltas</h2>
+                <p>Aquí puedes ver las respuestas del equipo docente a tus incidencias y reportes.</p>
+                
+                <div id="lista-mensajes-buzon" style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem;">
+                    <!-- Llenado dinámico por JS -->
+                </div>
+            </section>
+
         </main>
+    </div>
+
+    <!-- MODAL DE SUBIR TAREA (ESTUDIANTE) -->
+    <div id="modal-subir-tarea" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+        <div class="form-panel" style="max-width: 500px; width: 100%; padding: 2rem; margin: 1rem; background: var(--page-bg); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+            <h3 id="modal-tarea-titulo" style="border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-bottom: 1rem; display: block; width: 100%;">Título de la Tarea</h3>
+            <p id="modal-tarea-desc" style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.5;">Instrucciones del deber...</p>
+            
+            <div style="margin-bottom: 1.5rem; padding: 1rem; border-radius: 12px; background: var(--nav-hover); text-align: center;">
+                <p id="modal-tarea-estado" style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">Estado: Pendiente</p>
+                <button type="button" id="btn-seleccionar-archivo" class="action-btn secondary-btn" style="margin-top: 0; display: inline-block; width: auto;"><i class="fas fa-file-upload"></i> Seleccionar Archivo</button>
+                <span id="nombre-archivo-seleccionado" style="display: block; margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Ningún archivo seleccionado</span>
+            </div>
+
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <button id="btn-confirmar-subida" class="action-btn success-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;"><i class="fas fa-cloud-upload-alt"></i> Subir Tarea</button>
+                <button id="btn-cerrar-modal" class="action-btn secondary-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL MODIFICAR MATERIA (DOCENTE) -->
+    <div id="modal-modificar-materia" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+        <div class="form-panel" style="max-width: 500px; width: 100%; padding: 2rem; margin: 1rem; background: var(--page-bg); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+            <h3 style="border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-bottom: 1.5rem; display: block; width: 100%;"><i class="fas fa-edit"></i> Modificar Materia</h3>
+            
+            <div class="form-group">
+                <label>Nombre (No modificable):</label>
+                <input type="text" id="mod-mat-nombre" disabled style="opacity: 0.7; width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit;">
+            </div>
+            
+            <div class="form-group">
+                <label>Código (No modificable):</label>
+                <input type="text" id="mod-mat-codigo" disabled style="opacity: 0.7; width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit;">
+            </div>
+            
+            <div style="display: flex; gap: 1rem;">
+                <div class="form-group" style="flex: 1;">
+                    <label>Créditos:</label>
+                    <input type="number" id="mod-mat-creditos" min="1" max="10" style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit;">
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label>Paralelo:</label>
+                    <select id="mod-mat-paralelo" style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit; font-size: 0.95rem; outline: none;">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Horario:</label>
+                <input type="text" id="mod-mat-horario" style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit;">
+            </div>
+            
+            <div style="margin-bottom: 1.5rem; padding: 1rem; border-radius: 12px; background: var(--nav-hover); text-align: center;">
+                <p style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">Imagen de la Materia</p>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                    <img id="mod-mat-img-preview" src="" alt="Materia Preview" style="width: 120px; height: 85px; object-fit: cover; border-radius: 8px; display: none; background: #eee; border: 1px solid var(--input-border);">
+                    <button type="button" id="btn-seleccionar-imagen-materia" class="action-btn secondary-btn" style="margin-top: 0; display: inline-block; width: auto;"><i class="fas fa-image"></i> Seleccionar Imagen</button>
+                    <span id="nombre-imagen-seleccionada" style="display: block; font-size: 0.8rem; color: var(--text-muted);">Sin imagen</span>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <button id="btn-confirmar-modificacion" class="action-btn success-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;"><i class="fas fa-check"></i> Guardar Cambios</button>
+                <button id="btn-cerrar-modal-modificar" class="action-btn secondary-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- MODAL ASIGNAR DOCENTE A MATERIA (ADMIN) -->
+    <div id="modal-asignar-docente" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+        <div class="form-panel" style="max-width: 500px; width: 100%; padding: 2rem; margin: 1rem; background: var(--page-bg); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+            <h3 style="border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-bottom: 1.5rem; display: block; width: 100%;"><i class="fas fa-user-tag"></i> Asignar Docente</h3>
+            
+            <div class="form-group">
+                <label>Seleccionar Materia:</label>
+                <select id="asig-materia-select" style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit; font-size: 0.95rem; outline: none;">
+                    <!-- Llenado dinámico por JS -->
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Seleccionar Docente:</label>
+                <select id="asig-docente-select" style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit; font-size: 0.95rem; outline: none;">
+                    <!-- Llenado dinámico por JS -->
+                </select>
+            </div>
+
+            <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.5rem;">
+                <button id="btn-confirmar-asignacion-docente" class="action-btn success-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;"><i class="fas fa-check"></i> Asignar Docente</button>
+                <button id="btn-cerrar-modal-asignar" class="action-btn secondary-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL INSCRIBIR ESTUDIANTES A MATERIA (ADMIN) -->
+    <div id="modal-inscribir-estudiantes" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+        <div class="form-panel" style="max-width: 600px; width: 100%; padding: 2rem; margin: 1rem; background: var(--page-bg); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); display: flex; flex-direction: column; max-height: 85vh;">
+            <h3 style="border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-bottom: 1.5rem; display: block; width: 100%;"><i class="fas fa-user-plus"></i> Inscribir Estudiantes</h3>
+            
+            <div class="form-group">
+                <label>Seleccionar Materia:</label>
+                <select id="ins-materia-select" style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit; font-size: 0.95rem; outline: none;">
+                    <!-- Llenado dinámico por JS -->
+                </select>
+            </div>
+            
+            <label style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-main);">Seleccionar Estudiantes (Solo se muestran los no inscritos en esta materia/paralelos):</label>
+            <div style="flex: 1; overflow-y: auto; border: 2px solid var(--input-border); border-radius: 12px; background: var(--input-bg); padding: 1rem; margin-bottom: 1.5rem;" id="ins-estudiantes-list-container">
+                <!-- Checklist de estudiantes dinámico por JS -->
+            </div>
+
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <button id="btn-confirmar-inscripcion-estudiantes" class="action-btn success-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;"><i class="fas fa-check"></i> Inscribir Seleccionados</button>
+                <button id="btn-cerrar-modal-inscribir" class="action-btn secondary-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL SELECCIONAR MATERIAS REGISTRO (ESTUDIANTE / DOCENTE) -->
+    <div id="modal-seleccionar-materias-registro" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+        <div class="form-panel" style="max-width: 500px; width: 100%; padding: 2rem; margin: 1rem; background: var(--page-bg); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); display: flex; flex-direction: column; max-height: 80vh;">
+            <h3 style="border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-bottom: 1.5rem; display: block; width: 100%;"><i class="fas fa-book"></i> Seleccionar Materias (Máx 5)</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Selecciona hasta 5 materias a las que pertenecerá el nuevo registro.</p>
+            <div id="materias-registro-list-container" style="flex: 1; overflow-y: auto; border: 2px solid var(--input-border); border-radius: 12px; background: var(--input-bg); padding: 1rem; margin-bottom: 1.5rem;">
+                <!-- Checkbox list of subjects -->
+            </div>
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <button id="btn-confirmar-materias-registro" class="action-btn success-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;">Confirmar Selección</button>
+                <button id="btn-cerrar-materias-registro" class="action-btn secondary-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL SELECCIONAR CARRERAS MATERIA -->
+    <div id="modal-seleccionar-carreras-materia" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+        <div class="form-panel" style="max-width: 500px; width: 100%; padding: 2rem; margin: 1rem; background: var(--page-bg); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); display: flex; flex-direction: column; max-height: 80vh;">
+            <h3 style="border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-bottom: 1.5rem; display: block; width: 100%;"><i class="fas fa-graduation-cap"></i> Vincular Carreras</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Selecciona las carreras a las que pertenece esta materia.</p>
+            <div id="carreras-materia-list-container" style="flex: 1; overflow-y: auto; border: 2px solid var(--input-border); border-radius: 12px; background: var(--input-bg); padding: 1rem; margin-bottom: 1.5rem;">
+                <!-- Checkbox list of careers -->
+            </div>
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <button id="btn-confirmar-carreras-materia" class="action-btn success-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;">Confirmar</button>
+                <button id="btn-cerrar-carreras-materia" class="action-btn secondary-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL GESTIÓN DE MATERIAS DE LA CARRERA -->
+    <div id="modal-carrera-materias" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+        <div class="form-panel" style="max-width: 700px; width: 100%; padding: 2rem; margin: 1rem; background: var(--page-bg); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); display: flex; flex-direction: column; max-height: 85vh;">
+            <h3 style="border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-bottom: 1rem; display: block; width: 100%; text-align: left;"><i class="fas fa-graduation-cap"></i> Materias de: <span id="mcm-carrera-nombre" style="color: var(--primary);">Carrera</span></h3>
+            <p id="mcm-carrera-desc" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.4; text-align: left;"></p>
+            
+            <div id="mcm-semestres-list-container" style="flex: 1; overflow-y: auto; border: 2px solid var(--input-border); border-radius: 12px; background: var(--input-bg); padding: 1.2rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;">
+                <!-- Dynamically loaded semesters and subjects -->
+            </div>
+            
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <button id="btn-cerrar-carrera-materias" class="action-btn secondary-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CREAR MATERIA DIRECTAMENTE EN LA CARRERA Y SEMESTRE -->
+    <div id="modal-crear-materia-contextual" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.5); z-index: 1010; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+        <div class="form-panel" style="max-width: 500px; width: 100%; padding: 2rem; margin: 1rem; background: var(--page-bg); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+            <h3 style="border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-bottom: 1.5rem; display: block; width: 100%; text-align: left;"><i class="fas fa-plus"></i> Crear Nueva Materia</h3>
+            <p id="mcc-contexto-texto" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem; text-align: left;"></p>
+            
+            <form id="form-crear-materia-contextual">
+                <div class="form-group">
+                    <label>Código de la Materia:</label>
+                    <input type="text" id="mcc-mat-codigo" required placeholder="Ej. MAT-101">
+                </div>
+                <div class="form-group">
+                    <label>Nombre de la Materia:</label>
+                    <input type="text" id="mcc-mat-nombre" required placeholder="Ej. Estructuras de Datos">
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>Créditos:</label>
+                        <input type="number" id="mcc-mat-creditos" required min="1" max="10" value="5">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Paralelo:</label>
+                        <select id="mcc-mat-paralelo" required style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 2px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-family: inherit; font-size: 0.95rem; outline: none;">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Horario:</label>
+                    <input type="text" id="mcc-mat-horario" required placeholder="Ej. Lun-Mie 08:00 - 10:00" value="Por definir">
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.5rem;">
+                    <button type="submit" class="action-btn success-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;">Crear Materia</button>
+                    <button type="button" id="btn-cerrar-crear-materia-contextual" class="action-btn secondary-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DETALLE DE PARALELO (ASIGNACIÓN DOCENTE / ESTUDIANTE) -->
+    <div id="modal-paralelo-detalle" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.5); z-index: 1020; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+        <div class="form-panel" style="max-width: 600px; width: 100%; padding: 2rem; margin: 1rem; background: var(--page-bg); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); display: flex; flex-direction: column; max-height: 85vh;">
+            <h3 id="asig-modal-detalles-titulo" style="border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-bottom: 1rem; display: block; width: 100%; text-align: left;">Materia Seleccionada</h3>
+            <p id="asig-modal-detalles-subtitulo" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; text-align: left;"></p>
+            
+            <!-- Selección de Paralelo (A, B, C) -->
+            <label style="font-weight: 600; margin-bottom: 0.5rem; display: block; color: var(--text-main); text-align: left;">Paralelo Seleccionado:</label>
+            <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                <button type="button" class="action-btn asig-par-btn" data-paralelo="A" style="flex: 1; margin: 0; background: var(--nav-hover); color: var(--text-main);">Paralelo A</button>
+                <button type="button" class="action-btn asig-par-btn" data-paralelo="B" style="flex: 1; margin: 0; background: var(--nav-hover); color: var(--text-main);">Paralelo B</button>
+                <button type="button" class="action-btn asig-par-btn" data-paralelo="C" style="flex: 1; margin: 0; background: var(--nav-hover); color: var(--text-main);">Paralelo C</button>
+            </div>
+            
+            <!-- Contenido del Paralelo Seleccionado -->
+            <div id="asig-modal-paralelo-contenido" style="flex: 1; overflow-y: auto; margin-bottom: 1.5rem;">
+                <!-- Llenado dinámico por JS dependiente de si el paralelo existe -->
+            </div>
+            
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <button id="btn-cerrar-modal-paralelo-detalle" class="action-btn secondary-btn" style="width: auto; margin-top: 0; padding: 0.8rem 1.5rem;">Cerrar</button>
+            </div>
+        </div>
     </div>
 
     <script src="js/app.js"></script>

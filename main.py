@@ -18,6 +18,8 @@ def iniciar_app():
         background_color='#f3f4f6' 
     )
 
+    api_sapiens.set_window(ventana)
+
     print("Iniciando Sapiens...")
     webview.start(debug=True)
 

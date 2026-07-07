@@ -1,0 +1,1258 @@
+{
+    "estudiantes": [
+        {
+            "identificacion": "12457854125",
+            "nombre": "Culiano el Mariano",
+            "carrera": [
+                "Emprendimiento"
+            ],
+            "semestre": "1",
+            "fecha_registro": "2026-07-02 15:48:54",
+            "calificaciones": [
+                {
+                    "materia": "Estructuras de Datos",
+                    "nota": 9.5
+                },
+                {
+                    "materia": "Álgebra Lineal",
+                    "nota": 8.0
+                },
+                {
+                    "materia": "Programación Orientada a Objetos",
+                    "nota": 10.0
+                },
+                {
+                    "materia": "Lo emprendedore",
+                    "nota": 1.5
+                }
+            ],
+            "entregas": {
+                "EMP-A-1-deb-1-1": {
+                    "estado": "Entregado",
+                    "archivo_nombre": "FB_IMG_1782996714003.jpg",
+                    "archivo_ruta": "tareas_entregadas/EMP-A/Semana_1/deb-1-1/Culiano_el_Mariano_FB_IMG_1782996714003.jpg",
+                    "fecha_entrega": "2026-07-02 16:17:24",
+                    "nota": 1.5
+                }
+            }
+        },
+        {
+            "identificacion": "7894561235",
+            "nombre": "Alejandrito el huesito",
+            "carrera": [
+                "Emprendimiento"
+            ],
+            "semestre": "1",
+            "fecha_registro": "2026-07-02 15:49:10",
+            "calificaciones": [
+                {
+                    "materia": "Estructuras de Datos",
+                    "nota": 9.5
+                },
+                {
+                    "materia": "Álgebra Lineal",
+                    "nota": 8.0
+                },
+                {
+                    "materia": "Programación Orientada a Objetos",
+                    "nota": 10.0
+                }
+            ],
+            "entregas": {}
+        },
+        {
+            "identificacion": "1245789634",
+            "nombre": "Sebastian Pollito",
+            "carrera": [
+                "Psicología"
+            ],
+            "semestre": "1",
+            "fecha_registro": "2026-07-02 19:30:29",
+            "calificaciones": [
+                {
+                    "materia": "Estructuras de Datos",
+                    "nota": 9.5
+                },
+                {
+                    "materia": "Álgebra Lineal",
+                    "nota": 8.0
+                },
+                {
+                    "materia": "Programación Orientada a Objetos",
+                    "nota": 10.0
+                }
+            ],
+            "entregas": {
+                "MIL-A-1-deb-1-1": {
+                    "estado": "Entregado",
+                    "archivo_nombre": "1783017986650.png",
+                    "archivo_ruta": "tareas_entregadas/MIL-A/Semana_1/deb-1-1/Sebastian_Pollito_1783017986650.png",
+                    "fecha_entrega": "2026-07-02 19:34:57",
+                    "nota": 3.0
+                }
+            }
+        }
+    ],
+    "docentes": [
+        {
+            "identificacion": "1245789635",
+            "nombre": "Mariano el Ano",
+            "carrera": [
+                "Emprendimiento"
+            ],
+            "especialidad": "emprendedor profesional",
+            "fecha_registro": "2026-07-02 15:48:09"
+        },
+        {
+            "identificacion": "1234564565",
+            "nombre": "Yadira Montanero",
+            "carrera": [
+                "Emprendimiento",
+                "Psicología"
+            ],
+            "especialidad": "Se le muere la familia",
+            "fecha_registro": "2026-07-02 19:29:27"
+        }
+    ],
+    "materias": [
+        {
+            "codigo": "CAB-101-B",
+            "nombre": "Física 1",
+            "creditos": 6,
+            "horario": "Por definir",
+            "deberes": {
+                "1": [],
+                "2": [],
+                "3": [],
+                "4": [],
+                "5": [],
+                "6": [],
+                "7": [],
+                "8": [],
+                "9": [],
+                "10": [],
+                "11": [],
+                "12": [],
+                "13": [],
+                "14": [],
+                "15": [],
+                "16": []
+            },
+            "paralelo": "B",
+            "docente_email": null,
+            "docente_nombre": null,
+            "imagen": null,
+            "estudiantes_inscritos": [],
+            "semestre": "1",
+            "carreras": []
+        },
+        {
+            "codigo": "DIE-101-A",
+            "nombre": "Dientes y caries 1",
+            "creditos": 6,
+            "horario": "Por definir",
+            "deberes": {
+                "1": [],
+                "2": [],
+                "3": [],
+                "4": [],
+                "5": [],
+                "6": [],
+                "7": [],
+                "8": [],
+                "9": [],
+                "10": [],
+                "11": [],
+                "12": [],
+                "13": [],
+                "14": [],
+                "15": [],
+                "16": []
+            },
+            "paralelo": "A",
+            "docente_email": null,
+            "docente_nombre": null,
+            "imagen": null,
+            "estudiantes_inscritos": [],
+            "semestre": "1",
+            "carreras": [
+                "Odontología"
+            ]
+        },
+        {
+            "codigo": "DIE-A",
+            "nombre": "Dientes y caries 1",
+            "creditos": 6,
+            "horario": "Por definir",
+            "deberes": {
+                "1": [],
+                "2": [],
+                "3": [],
+                "4": [],
+                "5": [],
+                "6": [],
+                "7": [],
+                "8": [],
+                "9": [],
+                "10": [],
+                "11": [],
+                "12": [],
+                "13": [],
+                "14": [],
+                "15": [],
+                "16": []
+            },
+            "paralelo": "A",
+            "docente_email": null,
+            "docente_nombre": null,
+            "imagen": null,
+            "estudiantes_inscritos": [],
+            "semestre": "1",
+            "carreras": [
+                "Odontología"
+            ]
+        },
+        {
+            "codigo": "EMP-123-B",
+            "nombre": "Lo emprendedore",
+            "creditos": 4,
+            "horario": "lin ini i",
+            "deberes": {
+                "1": [],
+                "2": [],
+                "3": [],
+                "4": [],
+                "5": [],
+                "6": [],
+                "7": [],
+                "8": [],
+                "9": [],
+                "10": [],
+                "11": [],
+                "12": [],
+                "13": [],
+                "14": [],
+                "15": [],
+                "16": []
+            },
+            "paralelo": "B",
+            "docente_email": "1245789635@gmail.com",
+            "docente_nombre": "Mariano el Ano",
+            "imagen": null,
+            "estudiantes_inscritos": [],
+            "semestre": "1",
+            "carreras": [
+                "Emprendimiento"
+            ]
+        },
+        {
+            "codigo": "EMP-A",
+            "nombre": "Lo emprendedore",
+            "creditos": 4,
+            "horario": "Por definir",
+            "deberes": {
+                "1": [
+                    {
+                        "id": "deb-1-1",
+                        "titulo": "Matar un hada de los dientes",
+                        "descripcion": "Tarea de prueba",
+                        "puntos": 10,
+                        "fecha_limite": "2026-07-17T16:13",
+                        "formato": "PDF"
+                    }
+                ],
+                "2": [],
+                "3": [],
+                "4": [],
+                "5": [],
+                "6": [],
+                "7": [],
+                "8": [],
+                "9": [],
+                "10": [],
+                "11": [],
+                "12": [],
+                "13": [],
+                "14": [],
+                "15": [],
+                "16": []
+            },
+            "paralelo": "A",
+            "docente_email": "1245789635@gmail.com",
+            "docente_nombre": "Mariano el Ano",
+            "imagen": null,
+            "estudiantes_inscritos": [
+                "12457854125",
+                "7894561235"
+            ],
+            "semestre": "1",
+            "carreras": [
+                "Emprendimiento"
+            ]
+        },
+        {
+            "codigo": "EMP-C",
+            "nombre": "Lo emprendedore",
+            "creditos": 4,
+            "horario": "Por definir",
+            "deberes": {
+                "1": [],
+                "2": [],
+                "3": [],
+                "4": [],
+                "5": [],
+                "6": [],
+                "7": [],
+                "8": [],
+                "9": [],
+                "10": [],
+                "11": [],
+                "12": [],
+                "13": [],
+                "14": [],
+                "15": [],
+                "16": []
+            },
+            "paralelo": "C",
+            "docente_email": null,
+            "docente_nombre": null,
+            "imagen": null,
+            "estudiantes_inscritos": [],
+            "semestre": "1",
+            "carreras": [
+                "Emprendimiento"
+            ]
+        },
+        {
+            "codigo": "MAT-101-A",
+            "nombre": "Estructuras de Datos",
+            "creditos": 5,
+            "horario": "Lun-Mie 08:00 - 10:00",
+            "deberes": {
+                "1": [],
+                "2": [],
+                "3": [],
+                "4": [],
+                "5": [],
+                "6": [],
+                "7": [],
+                "8": [],
+                "9": [],
+                "10": [],
+                "11": [],
+                "12": [],
+                "13": [],
+                "14": [],
+                "15": [],
+                "16": []
+            },
+            "paralelo": "A",
+            "docente_email": null,
+            "docente_nombre": null,
+            "imagen": null,
+            "estudiantes_inscritos": [],
+            "semestre": "1",
+            "carreras": [
+                "Ingeniería en Sistemas"
+            ]
+        },
+        {
+            "codigo": "MAT-102-A",
+            "nombre": "Álgebra Lineal",
+            "creditos": 4,
+            "horario": "Mar-Jue 10:00 - 12:00",
+            "deberes": {
+                "1": [],
+                "2": [],
+                "3": [],
+                "4": [],
+                "5": [],
+                "6": [],
+                "7": [],
+                "8": [],
+                "9": [],
+                "10": [],
+                "11": [],
+                "12": [],
+                "13": [],
+                "14": [],
+                "15": [],
+                "16": []
+            },
+            "paralelo": "A",
+            "docente_email": null,
+            "docente_nombre": null,
+            "imagen": null,
+            "estudiantes_inscritos": [],
+            "semestre": "1",
+            "carreras": [
+                "Ingeniería en Sistemas"
+            ]
+        },
+        {
+            "codigo": "MIL-101-B",
+            "nombre": "Milchulogía",
+            "creditos": 10,
+            "horario": "cuando me den jovenes en accion",
+            "deberes": {
+                "1": [],
+                "2": [],
+                "3": [],
+                "4": [],
+                "5": [],
+                "6": [],
+                "7": [],
+                "8": [],
+                "9": [],
+                "10": [],
+                "11": [],
+                "12": [],
+                "13": [],
+                "14": [],
+                "15": [],
+                "16": []
+            },
+            "paralelo": "B",
+            "docente_email": null,
+            "docente_nombre": null,
+            "imagen": null,
+            "estudiantes_inscritos": [],
+            "semestre": "1",
+            "carreras": [
+                "Psicología"
+            ]
+        },
+        {
+            "codigo": "MIL-A",
+            "nombre": "Milchulogía",
+            "creditos": 10,
+            "horario": "Por definir",
+            "deberes": {
+                "1": [
+                    {
+                        "id": "deb-1-1",
+                        "titulo": "MATAR DE DAISY A ÑEMASO",
+                        "descripcion": "Matar a deisy y a bochi a punta de huevo",
+                        "puntos": 10,
+                        "fecha_limite": "2026-07-02T19:33",
+                        "formato": "PDF"
+                    }
+                ],
+                "2": [],
+                "3": [],
+                "4": [],
+                "5": [],
+                "6": [],
+                "7": [],
+                "8": [],
+                "9": [],
+                "10": [],
+                "11": [],
+                "12": [],
+                "13": [],
+                "14": [],
+                "15": [],
+                "16": []
+            },
+            "paralelo": "A",
+            "docente_email": "1234564565@gmail.com",
+            "docente_nombre": "Yadira Montanero",
+            "imagen": null,
+            "estudiantes_inscritos": [
+                "1245789634"
+            ],
+            "semestre": "1",
+            "carreras": [
+                "Psicología"
+            ]
+        },
+        {
+            "codigo": "RED-102-A",
+            "nombre": "Redes de Computadoras",
+            "creditos": 6,
+            "horario": "Por definir",
+            "deberes": {
+                "1": [],
+                "2": [],
+                "3": [],
+                "4": [],
+                "5": [],
+                "6": [],
+                "7": [],
+                "8": [],
+                "9": [],
+                "10": [],
+                "11": [],
+                "12": [],
+                "13": [],
+                "14": [],
+                "15": [],
+                "16": []
+            },
+            "paralelo": "A",
+            "docente_email": null,
+            "docente_nombre": null,
+            "imagen": null,
+            "estudiantes_inscritos": [],
+            "semestre": "1",
+            "carreras": []
+        }
+    ],
+    "tareas": [],
+    "incidencias_resueltas": [
+        {
+            "id_tarea": 1,
+            "descripcion": "Revisame la calificacion porfavor QUE PERDIO ECUADOR NO TENGO GANAS DE VIVIR",
+            "estado": "Atendida",
+            "fecha_creacion": "2026-07-02 16:16:07",
+            "email_estudiante": "12457854125@gmail.com",
+            "respuesta_docente": "Ok ya te revise pije ahora ya tienes su desgracia de calificacion",
+            "nombre_docente": "Mariano el Ano"
+        }
+    ],
+    "historial": [
+        {
+            "descripcion": "Login exitoso como docente: 1245789635@gmail.com",
+            "hora": "19:44:56",
+            "timestamp": 1783385096505,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: 1245789635@gmail.com",
+            "hora": "19:44:56",
+            "timestamp": 1783385096501,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Sistema Sapiens iniciado",
+            "hora": "19:44:45",
+            "timestamp": 1783385085293,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como docente: 1245789635@gmail.com",
+            "hora": "19:43:42",
+            "timestamp": 1783385022044,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: 1245789635@gmail.com",
+            "hora": "19:43:42",
+            "timestamp": 1783385022026,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Sistema Sapiens iniciado",
+            "hora": "19:43:31",
+            "timestamp": 1783385011320,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como docente: 1245789635@gmail.com",
+            "hora": "19:38:21",
+            "timestamp": 1783384701327,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: 1245789635@gmail.com",
+            "hora": "19:38:21",
+            "timestamp": 1783384701323,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Login fallido para: docente@gmail.com",
+            "hora": "19:37:41",
+            "timestamp": 1783384661785,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: docente@gmail.com",
+            "hora": "19:37:41",
+            "timestamp": 1783384661782,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Login exitoso como admin: admin@gmail.com",
+            "hora": "19:37:10",
+            "timestamp": 1783384630120,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: admin@gmail.com",
+            "hora": "19:37:10",
+            "timestamp": 1783384630116,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Sistema Sapiens iniciado",
+            "hora": "19:36:59",
+            "timestamp": 1783384619077,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como estudiante: 1245789634@gmail.com",
+            "hora": "13:43:09",
+            "timestamp": 1783190589908,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: 1245789634@gmail.com",
+            "hora": "13:43:09",
+            "timestamp": 1783190589904,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Login fallido para: 1234567891}@gmail.com",
+            "hora": "13:42:58",
+            "timestamp": 1783190578412,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: 1234567891}@gmail.com",
+            "hora": "13:42:58",
+            "timestamp": 1783190578409,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Login exitoso como admin: admin@gmail.com",
+            "hora": "13:42:38",
+            "timestamp": 1783190558840,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: admin@gmail.com",
+            "hora": "13:42:38",
+            "timestamp": 1783190558825,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Sistema Sapiens iniciado",
+            "hora": "13:42:32",
+            "timestamp": 1783190552991,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Calificación registrada para Sebastian Pollito en MIL-A: 3",
+            "hora": "19:36:06",
+            "timestamp": 1783038966820,
+            "destinatarios": [
+                "1245789634@gmail.com",
+                "admin",
+                "1234564565@gmail.com"
+            ]
+        },
+        {
+            "descripcion": "Login exitoso como docente: 1234564565@gmail.com",
+            "hora": "19:35:08",
+            "timestamp": 1783038908761,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: 1234564565@gmail.com",
+            "hora": "19:35:08",
+            "timestamp": 1783038908758,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Estudiante Sebastian Pollito entregó tarea en MIL-A: 1783017986650.png",
+            "hora": "19:34:57",
+            "timestamp": 1783038897855,
+            "destinatarios": [
+                "1245789634@gmail.com",
+                "admin",
+                "1234564565@gmail.com"
+            ]
+        },
+        {
+            "descripcion": "Login exitoso como estudiante: 1245789634@gmail.com",
+            "hora": "19:34:08",
+            "timestamp": 1783038848384,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: 1245789634@gmail.com",
+            "hora": "19:34:08",
+            "timestamp": 1783038848381,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Nueva tarea en MIL-A - Semana 1: MATAR DE DAISY A ÑEMASO",
+            "hora": "19:33:56",
+            "timestamp": 1783038836021,
+            "destinatarios": [
+                "1245789634@gmail.com",
+                "admin",
+                "1234564565@gmail.com"
+            ]
+        },
+        {
+            "descripcion": "Login exitoso como docente: 1234564565@gmail.com",
+            "hora": "19:33:03",
+            "timestamp": 1783038783967,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: 1234564565@gmail.com",
+            "hora": "19:33:03",
+            "timestamp": 1783038783965,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Docente Yadira Montanero asignado a materia Milchulogía (MIL-A)",
+            "hora": "19:32:51",
+            "timestamp": 1783038771745,
+            "destinatarios": [
+                "admin",
+                "1234564565@gmail.com"
+            ]
+        },
+        {
+            "descripcion": "Login exitoso como admin: admin@gmail.com",
+            "hora": "19:32:35",
+            "timestamp": 1783038755118,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: admin@gmail.com",
+            "hora": "19:32:35",
+            "timestamp": 1783038755116,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Login exitoso como docente: 1234564565@gmail.com",
+            "hora": "19:32:20",
+            "timestamp": 1783038740402,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: 1234564565@gmail.com",
+            "hora": "19:32:20",
+            "timestamp": 1783038740399,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Inscripción de 1 estudiantes en MIL-A",
+            "hora": "19:31:59",
+            "timestamp": 1783038719623,
+            "destinatarios": [
+                "admin",
+                "1245789634@gmail.com"
+            ]
+        },
+        {
+            "descripcion": "Materia registrada por administrador: Milchulogía (MIL-A)",
+            "hora": "19:31:50",
+            "timestamp": 1783038710941,
+            "destinatarios": [
+                "admin"
+            ]
+        },
+        {
+            "descripcion": "Materia registrada por administrador: Milchulogía (MIL-101-B)",
+            "hora": "19:31:41",
+            "timestamp": 1783038701223,
+            "destinatarios": [
+                "admin"
+            ]
+        },
+        {
+            "descripcion": "Estudiante registrado: Sebastian Pollito (1245789634@gmail.com)",
+            "hora": "19:30:29",
+            "timestamp": 1783038629617,
+            "destinatarios": [
+                "admin",
+                "1245789634@gmail.com"
+            ]
+        },
+        {
+            "descripcion": "Docente registrado: Yadira Montanero (1234564565@gmail.com)",
+            "hora": "19:29:27",
+            "timestamp": 1783038567758,
+            "destinatarios": [
+                "admin",
+                "1234564565@gmail.com"
+            ]
+        },
+        {
+            "descripcion": "Carrera registrada: Psicología",
+            "hora": "19:28:07",
+            "timestamp": 1783038487846,
+            "destinatarios": [
+                "admin",
+                "docente",
+                "estudiante"
+            ]
+        },
+        {
+            "descripcion": "Login exitoso como admin: admin@gmail.com",
+            "hora": "19:27:39",
+            "timestamp": 1783038459188,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: admin@gmail.com",
+            "hora": "19:27:39",
+            "timestamp": 1783038459185,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Sistema Sapiens iniciado",
+            "hora": "19:27:15",
+            "timestamp": 1783038435157,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como docente: 1245789635@gmail.com",
+            "hora": "16:35:42",
+            "timestamp": 1783028142234,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: 1245789635@gmail.com",
+            "hora": "16:35:42",
+            "timestamp": 1783028142232,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Login exitoso como estudiante: 12457854125@gmail.com",
+            "hora": "16:35:32",
+            "timestamp": 1783028132928,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Intento de login: 12457854125@gmail.com",
+            "hora": "16:35:32",
+            "timestamp": 1783028132926,
+            "destinatarios": [
+                "admin_log"
+            ]
+        },
+        {
+            "descripcion": "Sistema Sapiens iniciado",
+            "hora": "16:35:17",
+            "timestamp": 1783028117910,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como estudiante: 12457854125@gmail.com",
+            "hora": "16:20:53",
+            "timestamp": 1783027253072,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: 12457854125@gmail.com",
+            "hora": "16:20:53",
+            "timestamp": 1783027253070,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Promedio general de EMP-A guardado para Culiano el Mariano: 1.50",
+            "hora": "16:20:41",
+            "timestamp": 1783027241217,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "El docente Mariano el Ano ha respondido a tu incidencia #1",
+            "hora": "16:20:32",
+            "timestamp": 1783027232171,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como docente: 1245789635@gmail.com",
+            "hora": "16:20:12",
+            "timestamp": 1783027212597,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: 1245789635@gmail.com",
+            "hora": "16:20:12",
+            "timestamp": 1783027212594,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como estudiante: 12457854125@gmail.com",
+            "hora": "16:19:13",
+            "timestamp": 1783027153573,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: 12457854125@gmail.com",
+            "hora": "16:19:13",
+            "timestamp": 1783027153571,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login fallido para: 1245785412@gmail.com",
+            "hora": "16:19:05",
+            "timestamp": 1783027145635,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: 1245785412@gmail.com",
+            "hora": "16:19:05",
+            "timestamp": 1783027145632,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login fallido para: 1245785412@gmail.com",
+            "hora": "16:19:01",
+            "timestamp": 1783027141930,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: 1245785412@gmail.com",
+            "hora": "16:19:01",
+            "timestamp": 1783027141928,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Calificación registrada para Culiano el Mariano en EMP-A: 1.5",
+            "hora": "16:18:46",
+            "timestamp": 1783027126622,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como docente: 1245789635@gmail.com",
+            "hora": "16:17:57",
+            "timestamp": 1783027077576,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: 1245789635@gmail.com",
+            "hora": "16:17:57",
+            "timestamp": 1783027077574,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Estudiante Culiano el Mariano entregó tarea en EMP-A: FB_IMG_1782996714003.jpg",
+            "hora": "16:17:24",
+            "timestamp": 1783027044936,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Incidencia #1 reportada por 12457854125@gmail.com",
+            "hora": "16:16:07",
+            "timestamp": 1783026967970,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como estudiante: 12457854125@gmail.com",
+            "hora": "16:14:47",
+            "timestamp": 1783026887543,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: 12457854125@gmail.com",
+            "hora": "16:14:47",
+            "timestamp": 1783026887541,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Nueva tarea en EMP-A - Semana 1: Matar un hada de los dientes",
+            "hora": "16:14:08",
+            "timestamp": 1783026848672,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como docente: 1245789635@gmail.com",
+            "hora": "16:12:28",
+            "timestamp": 1783026748525,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: 1245789635@gmail.com",
+            "hora": "16:12:28",
+            "timestamp": 1783026748522,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Sistema Sapiens iniciado",
+            "hora": "16:12:18",
+            "timestamp": 1783026738230,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como docente: 1245789635@gmail.com",
+            "hora": "16:10:16",
+            "timestamp": 1783026616617,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: 1245789635@gmail.com",
+            "hora": "16:10:16",
+            "timestamp": 1783026616615,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Sistema Sapiens iniciado",
+            "hora": "16:10:01",
+            "timestamp": 1783026601964,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como docente: 1245789635@gmail.com",
+            "hora": "16:06:10",
+            "timestamp": 1783026370153,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: 1245789635@gmail.com",
+            "hora": "16:06:10",
+            "timestamp": 1783026370151,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como estudiante: 12457854125@gmail.com",
+            "hora": "16:05:48",
+            "timestamp": 1783026348646,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: 12457854125@gmail.com",
+            "hora": "16:05:48",
+            "timestamp": 1783026348644,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Docente Mariano el Ano asignado a materia Lo emprendedore (EMP-A)",
+            "hora": "16:05:31",
+            "timestamp": 1783026331113,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como admin: admin@gmail.com",
+            "hora": "16:04:37",
+            "timestamp": 1783026277432,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: admin@gmail.com",
+            "hora": "16:04:37",
+            "timestamp": 1783026277430,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Búsqueda fallida de materia: eeee",
+            "hora": "16:02:40",
+            "timestamp": 1783026160469,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como docente: 1245789635@gmail.com",
+            "hora": "16:02:22",
+            "timestamp": 1783026142232,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: 1245789635@gmail.com",
+            "hora": "16:02:22",
+            "timestamp": 1783026142230,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login fallido para: docente@gmail.com",
+            "hora": "16:02:09",
+            "timestamp": 1783026129368,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: docente@gmail.com",
+            "hora": "16:02:09",
+            "timestamp": 1783026129367,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Inscripción de 2 estudiantes en EMP-A",
+            "hora": "16:01:32",
+            "timestamp": 1783026092435,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Materia registrada por administrador: Lo emprendedore (EMP-C)",
+            "hora": "16:01:16",
+            "timestamp": 1783026076053,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Materia registrada por administrador: Lo emprendedore (EMP-A)",
+            "hora": "16:00:54",
+            "timestamp": 1783026054438,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como admin: admin@gmail.com",
+            "hora": "16:00:24",
+            "timestamp": 1783026024119,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: admin@gmail.com",
+            "hora": "16:00:24",
+            "timestamp": 1783026024116,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Sistema Sapiens iniciado",
+            "hora": "16:00:17",
+            "timestamp": 1783026017569,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Sistema Sapiens iniciado",
+            "hora": "15:57:43",
+            "timestamp": 1783025863198,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Materia EMP-123-B vinculada a carrera Emprendimiento en semestre 1",
+            "hora": "15:52:06",
+            "timestamp": 1783025526518,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Materia EMP-123-B desvinculada de carrera Emprendimiento",
+            "hora": "15:51:59",
+            "timestamp": 1783025519829,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Materia EMP-123-B vinculada a carrera Emprendimiento en semestre 1",
+            "hora": "15:51:50",
+            "timestamp": 1783025510487,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Materia registrada por administrador: Lo emprendedore (EMP-123-B)",
+            "hora": "15:51:34",
+            "timestamp": 1783025494821,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Estudiante registrado: Alejandrito el huesito (7894561235@gmail.com)",
+            "hora": "15:49:10",
+            "timestamp": 1783025350844,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Estudiante registrado: Culiano el Mariano (12457854125@gmail.com)",
+            "hora": "15:48:54",
+            "timestamp": 1783025334282,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Docente registrado: Mariano el Ano (1245789635@gmail.com)",
+            "hora": "15:48:09",
+            "timestamp": 1783025289200,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Carrera registrada: Emprendimiento",
+            "hora": "15:47:00",
+            "timestamp": 1783025220821,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Login exitoso como admin: admin@gmail.com",
+            "hora": "15:46:16",
+            "timestamp": 1783025176375,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Intento de login: admin@gmail.com",
+            "hora": "15:46:16",
+            "timestamp": 1783025176373,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Sistema Sapiens iniciado",
+            "hora": "15:46:10",
+            "timestamp": 1783025170435,
+            "destinatarios": []
+        },
+        {
+            "descripcion": "Base de datos reiniciada por el Administrador",
+            "hora": "15:43:00",
+            "timestamp": 1783023780000,
+            "destinatarios": []
+        }
+    ],
+    "carreras": [
+        {
+            "nombre": "Odontología",
+            "semestres": 10,
+            "descripcion": "Estudio del sistema estomatognático."
+        },
+        {
+            "nombre": "Emprendimiento",
+            "semestres": 8,
+            "descripcion": "lo emprendedore lo chonero"
+        },
+        {
+            "nombre": "Psicología",
+            "semestres": 8,
+            "descripcion": "BOCHI ES MECO"
+        }
+    ]
+}
